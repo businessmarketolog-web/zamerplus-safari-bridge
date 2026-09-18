@@ -1,0 +1,23 @@
+name: ZamerPlusBridge
+options:
+  bundleIdPrefix: ru.zamerplus
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+targets:
+  ZamerPlusBridge:
+    type: application
+    platform: iOS
+    sources:
+      - path: ZamerPlusBridge
+    info:
+      path: ZamerPlusBridge/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ru.zamerplus.safaribridge
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "5.0"
+    dependencies:
+      - sdk: RoomPlan.framework
+      - sdk: ARKit.framework
+      - sdk: CoreBluetooth.framework

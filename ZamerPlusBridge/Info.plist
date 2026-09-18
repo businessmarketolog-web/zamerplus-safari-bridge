@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>CFBundleDisplayName</key><string>Замер+ Bridge</string>
+<key>NSCameraUsageDescription</key><string>LiDAR и камера используются для сканирования помещения.</string>
+<key>NSBluetoothAlwaysUsageDescription</key><string>Bluetooth используется для получения измерений Bosch GLM.</string>
+<key>NSBluetoothPeripheralUsageDescription</key><string>Bluetooth используется для подключения Bosch GLM.</string>
+<key>UIRequiredDeviceCapabilities</key><array><string>arkit</string></array>
+<key>CFBundleURLTypes</key><array><dict><key>CFBundleURLName</key><string>ru.zamerplus.safaribridge</string><key>CFBundleURLSchemes</key><array><string>zamerplusbridge</string></array></dict></array>
+</dict></plist>

@@ -1,0 +1,45 @@
+name: Build unsigned IPA
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        run: xcodegen generate
+      - name: Build unsigned app
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project ZamerPlusBridge.xcodeproj \
+            -scheme ZamerPlusBridge \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM="" \
+            build
+      - name: Package IPA
+        run: |
+          set -euo pipefail
+          APP="build/Build/Products/Release-iphoneos/ZamerPlusBridge.app"
+          test -d "$APP"
+          rm -rf Payload
+          mkdir Payload
+          cp -R "$APP" Payload/
+          zip -qry ZamerPlusBridge-unsigned.ipa Payload
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZamerPlusBridge-unsigned
+          path: ZamerPlusBridge-unsigned.ipa
+          compression-level: 0
+          retention-days: 30
