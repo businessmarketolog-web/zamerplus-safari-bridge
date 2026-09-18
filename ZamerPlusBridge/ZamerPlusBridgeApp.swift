@@ -94,7 +94,15 @@ final class RoomScannerVC: UIViewController, RoomCaptureViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad(); view.backgroundColor = .black
         capture = RoomCaptureView(frame:view.bounds); capture.autoresizingMask=[.flexibleWidth,.flexibleHeight]; capture.delegate=self; capture.isModelEnabled=true; view.addSubview(capture)
-        let b=UIButton(type:.system); b.setTitle("Готово",for:.normal); b.titleLabel?.font=.boldSystemFont(ofSize:17); b.backgroundColor=.white; b.setTitleColor(.black,for:.normal); b.layer.cornerRadius=18; b.translatesAutoresizingMaskIntoConstraints=false; b.addTarget(self,action:#selector(done),for:.touchUpInside); view.addSubview(b)
+        let b = UIButton(type: .system)
+        b.setTitle("Готово", for: .normal)
+        b.titleLabel?.font = .boldSystemFont(ofSize: 17)
+        b.backgroundColor = .white
+        b.setTitleColor(.black, for: .normal)
+        b.layer.cornerRadius = 18
+        b.translatesAutoresizingMaskIntoConstraints = false
+        b.addTarget(self, action: #selector(done), for: .touchUpInside)
+        view.addSubview(b)
         NSLayoutConstraint.activate([b.trailingAnchor.constraint(equalTo:view.safeAreaLayoutGuide.trailingAnchor,constant:-16),b.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor,constant:-16),b.widthAnchor.constraint(equalToConstant:110),b.heightAnchor.constraint(equalToConstant:50)])
     }
     override func viewDidAppear(_ animated:Bool) {
